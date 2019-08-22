@@ -62,15 +62,15 @@ public class HeightRenderer : IMapRenderer
 		return indices;
 	}
 
-	private static List<Vector2> SetUVs(int lrLengthx, int lrLengthz)
+	private static List<Vector2> SetUVs(int width, int height)
 	{
-		List<Vector2> uvCoords = new Vector2[lrLengthx * lrLengthz].ToList();
+		List<Vector2> uvCoords = new List<Vector2>();
 
-		for (int z = 0; z <= lrLengthz - 1; z++)
+		for (int w = 0; w < width; w++)
 		{
-			for (int x = 0; x <= lrLengthx - 1; x++)
+			for (int h = 0; h < height; h++)
 			{
-				uvCoords[x + z * lrLengthx] = new Vector2(x / (lrLengthx - 1.0f), z / (lrLengthz - 1.0f));
+				uvCoords.Add(new Vector2(w/(float)width, h/(float)height));
 			}
 		}
 
