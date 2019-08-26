@@ -326,9 +326,10 @@ MonoBehaviour:
   MapFolderName: TestMap
   MapPrefab: {fileID: 9127831918565808016, guid: cfb1ffd310b5788478a0156c16ccfaa4,
     type: 3}
-  WaterMatPrefab: {fileID: 2100000, guid: 50fdc53a3026f824ba79ba80c11ed443, type: 2}
+  BasingMatPrefab: {fileID: 2100000, guid: d77ceae2c3fedc244940683963554e36, type: 2}
   TerrainTextureMatPrefab: {fileID: 2100000, guid: d99791b2001aee24c89ccc6e074c5404,
     type: 2}
+  WaterMatPrefab: {fileID: 2100000, guid: 50fdc53a3026f824ba79ba80c11ed443, type: 2}
 --- !u!4 &1776160440
 Transform:
   m_ObjectHideFlags: 0

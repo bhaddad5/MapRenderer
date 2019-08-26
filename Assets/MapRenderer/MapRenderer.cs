@@ -9,8 +9,10 @@ public class MapRenderer : MonoBehaviour
 
 	public MapParent MapPrefab;
 
-	public Material WaterMatPrefab;
+	public Material BasingMatPrefab;
 	public Material TerrainTextureMatPrefab;
+	public Material WaterMatPrefab;
+
 
 	private readonly HeightRenderer heightRenderer = new HeightRenderer();
 	private readonly SurfaceTextureRenderer surfaceRenderer = new SurfaceTextureRenderer();
@@ -22,7 +24,7 @@ public class MapRenderer : MonoBehaviour
 		var mapParent = GameObject.Instantiate(MapPrefab);
 
 		heightRenderer.RenderMap(data, mapParent);
-		surfaceRenderer.RenderMap(data, mapParent, TerrainTextureMatPrefab, WaterMatPrefab);
+		surfaceRenderer.RenderMap(data, mapParent, BasingMatPrefab, TerrainTextureMatPrefab, WaterMatPrefab);
 		doodadRenderer.RenderMap(data, mapParent);
 	}
 

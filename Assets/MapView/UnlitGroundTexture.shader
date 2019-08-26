@@ -86,7 +86,7 @@
 							GetAlphaComponent(i.uv, fixed2(0, -2)) +
 							GetAlphaComponent(i.uv, fixed2(-1, -2))
 					) / 25;
-				fixed4 c = tex2D(_GroundTex, i.uv * 5);
+				fixed4 c = tex2D(_GroundTex, i.uv * 20);
 				c.a = match;
 
 				return c;
@@ -95,4 +95,5 @@
             ENDCG
         }
     }
+	Fallback "VertexLit"
 }

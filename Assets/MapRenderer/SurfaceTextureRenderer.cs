@@ -7,7 +7,7 @@ using UnityStandardAssets.Water;
 
 public class SurfaceTextureRenderer
 {
-	public void RenderMap(MapData data, MapParent mapParent, Material surfaceMatPrefab, Material waterMatPrefab)
+	public void RenderMap(MapData data, MapParent mapParent, Material basingMatPrefab, Material surfaceMatPrefab, Material waterMatPrefab)
 	{
 		Dictionary<Color, Texture2D> terrainLookup = ParseTerrainLookup();
 		
@@ -26,10 +26,12 @@ public class SurfaceTextureRenderer
 		water.SetTexture("_MaskTex", data.TerrainMap);
 		mats.Add(water);
 
+		mats.Add(new Material(basingMatPrefab));
+
 		mapParent.GroundParent.GetComponent<MeshRenderer>().materials = mats.ToArray();
 		
 		var waterScript = mapParent.GroundParent.AddComponent<WaterBasic>();
-		waterScript.matNumber = mats.Count - 1;
+		waterScript.matNumber = mats.Count - 2;
 	}
 
 	private Dictionary<Color, Texture2D> ParseTerrainLookup()
