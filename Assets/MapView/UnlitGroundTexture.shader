@@ -52,9 +52,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
 				fixed4 c = tex2D(_LookupTex, i.uv);
-				half match = 0;
-				if (all(c == _LookupColor))
-					match = 1;
+				half match = (half)all(c == _LookupColor);
 				c = tex2D(_GroundTex, i.uv * 5) * match;
 				c.a = match;
 
