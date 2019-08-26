@@ -69,11 +69,11 @@
     <Compile Include="Assets\MapRenderer\MapRenderer.cs" />
     <Compile Include="Assets\MapRenderer\SurfaceTextureRenderer.cs" />
     <Compile Include="Assets\MapView\MapParent.cs" />
-    <Compile Include="Assets\ThirdPartyContent\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
+    <Compile Include="Assets\MapView\Water\WaterBasic.cs" />
     <None Include="Assets\StreamingAssets\Doodads\DoodadsLookup.txt" />
     <None Include="Assets\StreamingAssets\TerrainTextures\TerrainTextureLookup.txt" />
     <None Include="Assets\MapView\UnlitGroundTexture.shader" />
-    <None Include="Assets\ThirdPartyContent\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
+    <None Include="Assets\MapView\Water\FXWaterBasic.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Bert/Documents/Unity Projects/Map Editor and Visualizer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

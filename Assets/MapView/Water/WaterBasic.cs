@@ -15,9 +15,9 @@ namespace UnityStandardAssets.Water
             {
                 return;
             }
-	        if (r.materials.Length-1 < matNumber)
+	        if (r.sharedMaterials.Length-1 < matNumber)
 		        return;
-            Material mat = r.materials[matNumber];
+            Material mat = r.sharedMaterials[matNumber];
             if (!mat)
             {
                 return;

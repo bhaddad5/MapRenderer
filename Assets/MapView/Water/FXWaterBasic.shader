@@ -17,6 +17,7 @@ CGINCLUDE
 uniform float4 _horizonColor;
 
 sampler2D _MaskTex;
+float4 _MaskTex_TexelSize;
 
 uniform float4 WaveSpeed;
 uniform float _WaveScale;
@@ -76,6 +77,13 @@ CGPROGRAM
 sampler2D _BumpMap;
 sampler2D _ColorControl;
 
+half GetAlphaComponent(fixed2 baseUv, fixed2 texelOffset)
+{
+	fixed2 lookupUv = baseUv + (texelOffset * fixed2(_MaskTex_TexelSize.x, _MaskTex_TexelSize.y));
+	fixed4 c = tex2D(_MaskTex, lookupUv);
+	return (half)all(c == fixed4(0, 0, 1, 1));
+}
+
 half4 frag( v2f i ) : COLOR
 {
 	half3 bump1 = UnpackNormal(tex2D( _BumpMap, i.bumpuv[0] )).rgb;
@@ -91,7 +99,18 @@ half4 frag( v2f i ) : COLOR
 
 	UNITY_APPLY_FOG(i.fogCoord, col);
 
-	col.a = tex2D(_MaskTex, i.uv).a;
+	half match = (GetAlphaComponent(i.uv, fixed2(0, 0))) / 2 +
+		(GetAlphaComponent(i.uv, fixed2(1, 0)) +
+		GetAlphaComponent(i.uv, fixed2(0, 1)) +
+		GetAlphaComponent(i.uv, fixed2(1, 1)) +
+		GetAlphaComponent(i.uv, fixed2(-1, -1)) +
+		GetAlphaComponent(i.uv, fixed2(1, -1)) +
+		GetAlphaComponent(i.uv, fixed2(-1, 1)) +
+		GetAlphaComponent(i.uv, fixed2(-1, 0)) +
+		GetAlphaComponent(i.uv, fixed2(0, -1))
+		) / 16;
+
+	col.a = match;
 	return col;
 }
 ENDCG
