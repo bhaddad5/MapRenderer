@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,4 +12,5 @@ public class MapData
 
 	public float[,] HeightMap;
 	public Texture2D TerrainMap;
+	public Dictionary<Color, Texture2D> TerrainLookup;
 }
