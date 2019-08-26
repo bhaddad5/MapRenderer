@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="Assets\MapRenderer\DoodadRenderer.cs" />
     <Compile Include="Assets\MapRenderer\HeightRenderer.cs" />
-    <Compile Include="Assets\MapRenderer\IMapRenderer.cs" />
     <Compile Include="Assets\MapRenderer\MapData.cs" />
     <Compile Include="Assets\MapRenderer\MapRenderer.cs" />
     <Compile Include="Assets\MapRenderer\SurfaceTextureRenderer.cs" />

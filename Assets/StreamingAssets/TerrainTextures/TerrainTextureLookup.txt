@@ -1,0 +1,6 @@
+#0000FF : Sand
+#CDAF00 : Dirt
+#D0F13F : Fertile
+#624A14 : Mountains
+#000000 : Wilderness
+#FFF100 : Sand

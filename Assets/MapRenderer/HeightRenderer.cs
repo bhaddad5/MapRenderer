@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class HeightRenderer : IMapRenderer
+public class HeightRenderer
 {
 	public void RenderMap(MapData data, MapParent mapParent)
 	{
