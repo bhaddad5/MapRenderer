@@ -38,6 +38,7 @@
 
             sampler2D _LookupTex;
             float4 _LookupTex_ST;
+			float4 _LookupTex_TexelSize;
 			fixed4 _LookupColor;
 			sampler2D _GroundTex;
 
@@ -49,15 +50,48 @@
                 return o;
             }
 
+			half GetAlphaComponent(fixed2 baseUv, fixed2 texelOffset)
+			{
+				fixed2 lookupUv = baseUv + (texelOffset * fixed2(_LookupTex_TexelSize.x, _LookupTex_TexelSize.y));
+				fixed4 c = tex2D(_LookupTex, lookupUv);
+				return (half)all(c == _LookupColor);
+			}
+
             fixed4 frag (v2f i) : SV_Target
             {
-				fixed4 c = tex2D(_LookupTex, i.uv);
-				half match = (half)all(c == _LookupColor);
-				c = tex2D(_GroundTex, i.uv * 5) * match;
+				half match = (GetAlphaComponent(i.uv, fixed2(0, 0)) + 
+							GetAlphaComponent(i.uv, fixed2(1, 0)) +
+							GetAlphaComponent(i.uv, fixed2(0, 1)) +
+							GetAlphaComponent(i.uv, fixed2(1, 1)) +
+							GetAlphaComponent(i.uv, fixed2(-1, -1)) +
+							GetAlphaComponent(i.uv, fixed2(1, -1)) +
+							GetAlphaComponent(i.uv, fixed2(-1, 1)) +
+							GetAlphaComponent(i.uv, fixed2(-1, 0)) +
+							GetAlphaComponent(i.uv, fixed2(0, -1)) +
+
+					 		GetAlphaComponent(i.uv, fixed2(2, -2)) +
+							GetAlphaComponent(i.uv, fixed2(2, -1)) +
+							GetAlphaComponent(i.uv, fixed2(2, 0)) +
+							GetAlphaComponent(i.uv, fixed2(2, 1)) +
+							GetAlphaComponent(i.uv, fixed2(2, 2)) +
+							GetAlphaComponent(i.uv, fixed2(-2, -2)) +
+							GetAlphaComponent(i.uv, fixed2(-2, -1)) +
+							GetAlphaComponent(i.uv, fixed2(-2, 0)) +
+							GetAlphaComponent(i.uv, fixed2(-2, 1)) +
+							GetAlphaComponent(i.uv, fixed2(-2, 2)) +
+							GetAlphaComponent(i.uv, fixed2(1, 2)) +
+							GetAlphaComponent(i.uv, fixed2(0, 2)) +
+							GetAlphaComponent(i.uv, fixed2(-1, 2)) +
+							GetAlphaComponent(i.uv, fixed2(1, -2)) +
+							GetAlphaComponent(i.uv, fixed2(0, -2)) +
+							GetAlphaComponent(i.uv, fixed2(-1, -2))
+					) / 25;
+				fixed4 c = tex2D(_GroundTex, i.uv * 5);
 				c.a = match;
 
 				return c;
             }
+			
             ENDCG
         }
     }
